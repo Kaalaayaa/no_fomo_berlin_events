@@ -163,7 +163,7 @@ export default async function EventPage({ params }: Props) {
               <div className={styles.section}>
                 <div className={styles.sectionLabel}>— Line-up</div>
                 <div className={styles.lineup}>
-                  {event.lineup.split("\n").map((line, i) => {
+                  {(event.lineup as string).split('\n').map((line: string, i) => {
                     const [time, ...rest] = line.split("—");
                     return (
                       <div key={i} className={styles.lineupRow}>
