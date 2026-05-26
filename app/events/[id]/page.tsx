@@ -42,8 +42,10 @@ export default async function EventPage({ params }: Props) {
   const event = await prisma.event.findUnique({ where: { id } });
   if (!event) notFound();
 
+  type RelatedEvent = Awaited<ReturnType<typeof prisma.event.findMany>>[number];
+
   // Fetch related events — same category or audience, exclude current
-  const related = await prisma.event.findMany({
+  const related: RelatedEvent[] = await prisma.event.findMany({
     where: {
       status: "approved",
       id: { not: id },
