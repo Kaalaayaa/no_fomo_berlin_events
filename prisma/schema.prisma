@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Event {
+  id           String   @id @default(cuid())
+  title        String
+  tagline      String
+  description  String
+  lineup       String?
+  date         DateTime
+  endDate      DateTime?
+  venue        String
+  address      String?
+  category     String
+  audience     String
+  tags         String[]
+  imageUrl     String?
+  priceMin     Float?
+  priceMax     Float?
+  pricingModel String?
+  capacity     Int?
+  ticketUrl    String?
+  isSafe       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  status       String   @default("pending")
+}
