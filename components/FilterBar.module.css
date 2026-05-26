@@ -64,13 +64,43 @@
 }
 
 .chipActive {
-  composes: chip;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--rule-strong);
+  padding: 0.42rem 0.8rem;
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--ink);
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+  cursor: pointer;
+  line-height: 1;
+  border-color: var(--rule);
   background: var(--ink);
   color: var(--paper);
 }
 
 .chipAccent {
-  composes: chip;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--rule-strong);
+  padding: 0.42rem 0.8rem;
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--ink);
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+  cursor: pointer;
+  line-height: 1;
+  border-color: var(--rule);
   border-color: var(--accent);
   color: var(--accent);
 }
@@ -81,7 +111,22 @@
 }
 
 .chipAccentActive {
-  composes: chip;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--rule-strong);
+  padding: 0.42rem 0.8rem;
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--ink);
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+  cursor: pointer;
+  line-height: 1;
+  border-color: var(--rule);
   border-color: var(--accent);
   background: var(--accent);
   color: var(--accent-ink);

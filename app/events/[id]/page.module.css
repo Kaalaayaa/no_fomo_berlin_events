@@ -117,7 +117,19 @@
 }
 
 .chipAccent {
-  composes: chip;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--rule-strong);
+  padding: 0.38rem 0.75rem;
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
   border-color: var(--accent);
   background: var(--accent);
   color: var(--accent-ink);
@@ -179,8 +191,6 @@
   }
 }
 
-.fact {}
-
 .factLabel {
   font-family: var(--font-mono), monospace;
   font-size: 10px;
@@ -208,7 +218,6 @@
 }
 
 /* SECTION */
-.section {}
 
 .sectionLabel {
   font-family: var(--font-mono), monospace;
@@ -291,7 +300,6 @@
 }
 
 /* SIDEBAR */
-.sidebar {}
 
 .sidebarSticky {
   display: flex;

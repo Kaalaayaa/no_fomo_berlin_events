@@ -82,7 +82,16 @@
 }
 
 .chipAccent {
-  composes: chip;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--rule-strong);
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1;
   border-color: var(--accent);
   color: var(--accent);
 }
