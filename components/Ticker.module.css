@@ -1,0 +1,32 @@
+
+.ticker {
+  background: var(--ink);
+  border-bottom: 1px solid var(--rule);
+  overflow: hidden;
+}
+ 
+.track {
+  display: flex;
+  white-space: nowrap;
+  padding: 7px 0;
+  animation: scroll-x 70s linear infinite;
+}
+ 
+.items {
+  display: flex;
+  flex-shrink: 0;
+  gap: 3rem;
+  padding-left: 3rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--paper);
+  opacity: 0.9;
+}
+ 
+@keyframes scroll-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+ 

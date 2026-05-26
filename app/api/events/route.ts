@@ -6,24 +6,27 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
     const category = searchParams.get('category')
     const audience = searchParams.get('audience')
+    const dateFrom = searchParams.get('dateFrom')
+    const dateTo = searchParams.get('dateTo')
 
     const events = await prisma.event.findMany({
       where: {
         status: 'approved',
         ...(category && { category }),
         ...(audience && { audience }),
+        ...(dateFrom && {
+          date: {
+            gte: new Date(dateFrom),
+            ...(dateTo && { lte: new Date(dateTo) }),
+          },
+        }),
       },
-      orderBy: {
-        date: 'asc',
-      },
+      orderBy: { date: 'asc' },
     })
 
     return NextResponse.json(events)
   } catch (error) {
     console.error(error)
-    return NextResponse.json(
-      { error: 'Failed to fetch events' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Failed to fetch events' }, { status: 500 })
   }
 }

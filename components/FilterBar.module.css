@@ -1,0 +1,88 @@
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.inner {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0.75rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.groupLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.divider {
+  width: 1px;
+  height: 20px;
+  background: var(--rule-strong);
+  opacity: 0.2;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--rule-strong);
+  padding: 0.42rem 0.8rem;
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--ink);
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+  cursor: pointer;
+  line-height: 1;
+  border-color: var(--rule);
+}
+
+.chip:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.chipActive {
+  composes: chip;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.chipAccent {
+  composes: chip;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.chipAccent:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.chipAccentActive {
+  composes: chip;
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-ink);
+}
