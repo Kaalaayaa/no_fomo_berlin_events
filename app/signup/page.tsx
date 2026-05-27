@@ -22,11 +22,8 @@ export default function SignUpPage() {
       <div className={styles.inner}>
         <div className={styles.label}>— Become a member</div>
         <h1 className={styles.title}>
-          Make yourself <em>a key.</em>
+          Create an account
         </h1>
-        <p className={styles.subtitle}>
-          Two minutes. We never sell your email. You can leave any time.
-        </p>
 
         {!submitted ? (
           <form className={styles.form} onSubmit={handleSubmit}>
@@ -55,11 +52,11 @@ export default function SignUpPage() {
             <button type="submit" className={styles.submitBtn} disabled={loading}>
               {loading ? 'Sending...' : 'Send invite link →'}
             </button>
-            <p className={styles.terms}>
+            {/* <p className={styles.terms}>
               By signing up you agree to our{' '}
               <a href="#" className={styles.termsLink}>door policy</a>{' '}
               and that you're 18+.
-            </p>
+            </p> */}
           </form>
         ) : (
           <div className={styles.success}>
@@ -68,7 +65,7 @@ export default function SignUpPage() {
           </div>
         )}
 
-        <div className={styles.perks}>
+        {/* <div className={styles.perks}>
           <div className={styles.perksLabel}>— What you get</div>
           {[
             { num: '01', title: 'Friday digest, 48h early.', body: 'Weekend listings before the public site.' },
@@ -83,7 +80,7 @@ export default function SignUpPage() {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
 
         <div className={styles.divider}>
           <span className={styles.dividerText}>Already a member?</span>

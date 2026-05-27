@@ -14,9 +14,8 @@ export default function AboutPage() {
             <em>Kept by hand.</em>
           </h1>
           <p className={styles.heroSubtitle}>
-            no/fomo is a small, hand-edited list of queer & FLINTA* events in
-            Berlin. It's a side project — one person, one inbox, one cup of
-            coffee a morning.
+            no/fomo is a small side project, hand-edited list of queer & FLINTA* events in
+            Berlin.
           </p>
         </div>
       </section>
@@ -24,18 +23,7 @@ export default function AboutPage() {
       {/* THE NOTE */}
       <section className={styles.noteSection}>
         <div className={styles.noteInner}>
-          <div className={styles.noteSidebar}>
-            <div className={styles.label}>— A note</div>
-            <div className={styles.noteMeta}>
-              Started · 03.2024
-              <br />
-              From · Neukölln, mostly
-              <br />
-              Updated · weekly, Fridays
-              <br />
-              Reach · ~2,000 readers
-            </div>
-          </div>
+          
           <div className={styles.noteBody}>
             <p className={styles.noteText}>
               I started this in 2024 because I kept missing the events I cared
@@ -46,25 +34,24 @@ export default function AboutPage() {
             <p className={styles.noteTextSoft}>
               So I keep a list. Every Friday I go through what people have sent
               me, what I've seen on posters, what friends mention at the bar. I
-              check that the event is real, that the door is okay, and that it's
-              not the kind of thing that gets ruined by being googled. Then it
+              check that the event is real and conform. Then it
               goes on the site.
             </p>
-            <p className={styles.noteTextSoft}>
+            {/* <p className={styles.noteTextSoft}>
               That's the whole thing. It's not a venue, a label, or a startup.
               It's a directory. If it's useful to you, I'm glad.
-            </p>
-            <div className={styles.sig}>
+            </p> */}
+            {/* <div className={styles.sig}>
               <div className={styles.sigFrom}>— Yours,</div>
               <div className={styles.sigName}>Lou.</div>
               <div className={styles.sigStamp}>no/fomo · Berlin · 2026</div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
 
       {/* THREE RULES */}
-      <section className={styles.rulesSection}>
+      {/* <section className={styles.rulesSection}>
         <div className={styles.rulesInner}>
           <div className={styles.label} style={{ marginBottom: "1.5rem" }}>
             — Three things I try to do
@@ -97,10 +84,10 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQ */}
-      <section className={styles.faqSection}>
+      {/* <section className={styles.faqSection}>
         <div className={styles.faqInner}>
           <div className={styles.faqSidebar}>
             <div className={styles.label}>— FAQ</div>
@@ -138,7 +125,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CONTACT */}
       <section className={styles.contactSection}>
@@ -150,10 +137,10 @@ export default function AboutPage() {
             <h2 className={styles.contactTitle}>
               Just write to <em>me.</em>
             </h2>
-            <p className={styles.contactSubtitle}>
+            {/* <p className={styles.contactSubtitle}>
               One inbox, one person. I read everything within a few days, slower
               on weekends.
-            </p>
+            </p> */}
           </div>
           <div className={styles.contactRight}>
             <ul className={styles.contactList}>
@@ -166,14 +153,14 @@ export default function AboutPage() {
                   hello@nofomo.berlin
                 </a>
               </li>
-              <li className={styles.contactItem}>
+              {/* <li className={styles.contactItem}>
                 <span className={styles.contactItemLabel}>Signal</span>
                 <span className={styles.contactItemMuted}>on request</span>
               </li>
               <li className={styles.contactItem}>
                 <span className={styles.contactItemLabel}>Mail</span>
                 <span className={styles.contactItemMuted}>Postfach · NK</span>
-              </li>
+              </li> */}
             </ul>
             <div className={styles.contactActions}>
               <Link href="/submit" className={styles.ctaBtnFilled}>

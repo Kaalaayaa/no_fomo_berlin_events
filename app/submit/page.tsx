@@ -94,7 +94,7 @@ export default function SubmitPage() {
             </div>
             <div>
               <p className={styles.heroSubtitle}>
-                Free for grassroots crews. We don't list venue programming, brand activations, or anything with a guestlist arms race. Reviewed within 48 hours.
+                By the community, for the community. We review submissions within 48 hours.
               </p>
             </div>
           </div>
@@ -140,7 +140,6 @@ export default function SubmitPage() {
                 <div className={styles.field}>
                   <label className={styles.label} htmlFor="venue">Venue <span className={styles.req}>*</span></label>
                   <input id="venue" name="venue" className={styles.input} type="text" placeholder="RSO · Sameheads…" required />
-                  <div className={styles.hint}>Or "Location on RSVP" if you don't publish the address.</div>
                 </div>
                 <div className={styles.field}>
                   <label className={styles.label} htmlFor="address">Address</label>
@@ -187,7 +186,6 @@ export default function SubmitPage() {
                     >{a}</button>
                   ))}
                 </div>
-                <div className={styles.hint}>Be honest — the awareness team will care.</div>
               </div>
 
               <div className={styles.field}>
@@ -223,7 +221,7 @@ export default function SubmitPage() {
               <div className={styles.field}>
                 <label className={styles.label} htmlFor="description">Full description <span className={styles.req}>*</span></label>
                 <textarea id="description" name="description" className={styles.textarea} placeholder="Who's playing, what to expect, anything else the door should know. ~150–250 words." required />
-                <div className={styles.hint}>Plain text. Write it the way you'd describe it to a friend.</div>
+                {/* <div className={styles.hint}>Plain text. Write it the way you'd describe it to a friend.</div> */}
               </div>
 
               <div className={styles.field}>
@@ -299,12 +297,12 @@ export default function SubmitPage() {
                 </div>
               </div>
 
-              <label className={styles.checkboxLabel}>
+              {/* <label className={styles.checkboxLabel}>
                 <input type="checkbox" className={styles.checkbox} required />
                 <span className={styles.checkboxText}>
                   I confirm this event is grassroots, community-led, with an awareness contact present on the night.
                 </span>
-              </label>
+              </label> */}
             </div>
 
             <div className={styles.submitRow}>
@@ -323,17 +321,16 @@ export default function SubmitPage() {
               <div className={styles.sidebarBox}>
                 <div className={styles.sectionLabel} style={{ color: 'var(--accent)' }}>— What we check</div>
                 <ul className={styles.checkList}>
-                  <li>· Grassroots & community-led — not a brand activation.</li>
-                  <li>· Awareness team present and reachable on the night.</li>
-                  <li>· Door is honest about who the night is for.</li>
-                  <li>· Pricing isn't gatekeeping the community it claims to serve.</li>
+                  <li>· Queer-led or actively queer-centered.</li>
+                  <li>· Not homophobic or transphobic.</li>
+                  <li>· Accessibility & community care structures.</li>
                 </ul>
               </div>
 
               <div className={styles.sidebarBox} style={{ background: 'var(--paper-soft)' }}>
                 <div className={styles.sectionLabel}>— Not sure?</div>
                 <p className={styles.sidebarText}>
-                  If you're not sure whether your event fits, send us a message before submitting. We'd rather have a quick conversation than a rejected form.
+                  If you're not sure whether your event fits, send us a message before submitting.
                 </p>
                 <a href="mailto:hello@nofomo.berlin" className={styles.sidebarLink}>hello@nofomo.berlin</a>
               </div>
