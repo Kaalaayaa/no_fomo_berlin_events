@@ -177,6 +177,10 @@
   resize: vertical;
 }
 
+.textarea:focus {
+  border-color: var(--ink);
+}
+
 .hint {
   font-family: var(--font-mono), monospace;
   font-size: 10px;
@@ -237,6 +241,11 @@
 .chip:hover {
   background: var(--ink);
   color: var(--paper);
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
 }
 
 .chipActive {

@@ -64,6 +64,9 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
+  /* tell the snap engine: the "start" zone begins after the left indent,
+     so the first card never snaps flush with the viewport edge */
+  scroll-padding-left: max(2rem, calc((100vw - 1480px) / 2 + 2rem));
 }
 
 .rail::-webkit-scrollbar {
@@ -74,6 +77,9 @@
   display: flex;
   gap: 1.25rem;
   padding: 0 2rem 2.5rem;
+  /* align first card with the "Tonight in Berlin" heading above it:
+     mirrors the max-width:1480px + margin:auto centering of .railInner */
+  padding-left: max(2rem, calc((100vw - 1480px) / 2 + 2rem));
   min-width: max-content;
 }
 
@@ -160,6 +166,7 @@
 .loadMoreBtn:hover {
   opacity: 0.8;
 }
+
 
 .empty {
   font-family: var(--font-mono), monospace;

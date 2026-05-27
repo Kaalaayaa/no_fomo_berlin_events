@@ -10,6 +10,7 @@ interface Filters {
   audience: string | null
   dateFrom: string | null
   dateTo: string | null
+  when: string | null
 }
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
     audience: null,
     dateFrom: null,
     dateTo: null,
+    when: null,
   })
 
   return (

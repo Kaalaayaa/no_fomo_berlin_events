@@ -7,10 +7,10 @@ export default function Hero() {
         <h1 className={styles.title}>
           Queer & FLINTA* events <em>in</em> Berlin.
         </h1>
-        <p className={styles.subtitle}>
+        {/* <p className={styles.subtitle}>
           A weekly, human-edited index of clubs, concerts, readings, kitchens
           and cruises — read by a person before it shows up here.
-        </p>
+        </p> */}
       </div>
     </section>
   )

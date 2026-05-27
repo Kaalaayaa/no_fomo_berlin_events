@@ -278,45 +278,10 @@ export default function SubmitPage() {
               </div>
             </div>
 
-            {/* 05 AWARENESS */}
+            {/* 05 WHO */}
             <div className={styles.formSection}>
               <div className={styles.sectionHeader}>
                 <span className={styles.sectionNum}>05</span>
-                <div>
-                  <div className={styles.sectionLabel}>— Awareness & accessibility</div>
-                  <h2 className={styles.sectionTitle}>Required.</h2>
-                </div>
-              </div>
-
-              <div className={styles.field}>
-                <label className={styles.label} htmlFor="awareness">Awareness contact <span className={styles.req}>*</span></label>
-                <input id="awareness" name="awareness" className={styles.input} type="text" placeholder="Name + phone or Signal handle reachable on the night" required />
-                <div className={styles.hint}>Will not be public — only used if a guest reports an incident.</div>
-              </div>
-
-              <div className={styles.field}>
-                <label className={styles.label}>Accessibility</label>
-                <div className={styles.chips}>
-                  {ACCESS.map(a => (
-                    <button key={a} type="button"
-                      className={access.includes(a) ? styles.chipActive : styles.chip}
-                      onClick={() => toggleAccess(a)}
-                      aria-pressed={access.includes(a)}
-                    >{a}</button>
-                  ))}
-                </div>
-              </div>
-
-              <div className={styles.field}>
-                <label className={styles.label} htmlFor="extra">Anything else the door should make clear?</label>
-                <textarea id="extra" name="extra" className={styles.textarea} placeholder="e.g. phone sticker policy, dress code, content warnings, photography rules." />
-              </div>
-            </div>
-
-            {/* 06 WHO */}
-            <div className={styles.formSection}>
-              <div className={styles.sectionHeader}>
-                <span className={styles.sectionNum}>06</span>
                 <div>
                   <div className={styles.sectionLabel}>— Who's submitting</div>
                   <h2 className={styles.sectionTitle}>So we can reach you.</h2>

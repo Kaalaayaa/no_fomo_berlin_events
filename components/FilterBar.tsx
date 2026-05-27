@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import styles from './FilterBar.module.css'
 
-const WHEN = ['Tonight', 'Tomorrow', 'Weekend', 'Next 7d']
-const WHAT = ['Club', 'Concert', 'Performance', 'Reading', 'Workshop', 'Cinema', 'Exhibition']
+const WHEN = ['Tonight', 'Tomorrow', 'Weekend', 'This week']
+const WHAT = ['Club', 'Concert', 'Performance', 'Reading', 'Workshop', 'Cinema', 'Exhibition', 'Market', 'Kitchen']
 const FOR = ['FLINTA*', 'Queer', 'All welcome']
 
 interface FilterBarProps {
@@ -13,6 +13,7 @@ interface FilterBarProps {
     audience: string | null
     dateFrom: string | null
     dateTo: string | null
+    when: string | null
   }) => void
 }
 
@@ -45,7 +46,7 @@ function getDateRange(when: string): { dateFrom: string; dateTo: string } {
     return { dateFrom: fri.toISOString(), dateTo: sun.toISOString() }
   }
 
-  if (when === 'Next 7d') {
+  if (when === 'This week') {
     const end = new Date(today)
     end.setDate(today.getDate() + 6)
     end.setHours(23, 59, 59)
@@ -56,35 +57,29 @@ function getDateRange(when: string): { dateFrom: string; dateTo: string } {
 }
 
 export default function FilterBar({ onFilterChange }: FilterBarProps) {
-  const [activeWhen, setActiveWhen] = useState<string | null>('Tonight')
+  const [activeWhen, setActiveWhen] = useState<string | null>(null)
   const [activeWhat, setActiveWhat] = useState<string | null>(null)
   const [activeFor, setActiveFor] = useState<string | null>(null)
-
-  useEffect(() => {
-  const dates = getDateRange('Tonight')
-  onFilterChange({ category: null, audience: null, ...dates })
-}, [])
-
 
   function handleWhen(value: string) {
     const next = activeWhen === value ? null : value
     setActiveWhen(next)
     const dates = next ? getDateRange(next) : { dateFrom: null, dateTo: null }
-    onFilterChange({ category: activeWhat, audience: activeFor, ...dates })
+    onFilterChange({ category: activeWhat, audience: activeFor, when: next, ...dates })
   }
 
   function handleWhat(value: string) {
     const next = activeWhat === value ? null : value
     setActiveWhat(next)
     const dates = activeWhen ? getDateRange(activeWhen) : { dateFrom: null, dateTo: null }
-    onFilterChange({ category: next, audience: activeFor, ...dates })
+    onFilterChange({ category: next, audience: activeFor, when: activeWhen, ...dates })
   }
 
   function handleFor(value: string) {
     const next = activeFor === value ? null : value
     setActiveFor(next)
     const dates = activeWhen ? getDateRange(activeWhen) : { dateFrom: null, dateTo: null }
-    onFilterChange({ category: activeWhat, audience: next, ...dates })
+    onFilterChange({ category: activeWhat, audience: next, when: activeWhen, ...dates })
   }
 
   return (

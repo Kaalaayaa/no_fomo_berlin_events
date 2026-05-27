@@ -1,11 +1,11 @@
 import styles from './Ticker.module.css'
  
 const items = [
-  '★ June lineup is live',
-  'Berlin · 13° · klar',
-  'Members night ⟶ Fri 06.06 · RSO',
-  'Door policy: respect or leave',
-  '★ Solidarity tickets always available',
+  '★ Queer & FLINTA* events in Berlin',
+  'Human-edited · ad-free · member-funded',
+  'Updated every Friday morning',
+  '★ Every listing read by hand',
+  'Berlin · 14° · bewölkt',
 ]
  
 export default function Ticker() {

@@ -75,9 +75,6 @@ export default function EventCard({ event, size = "default" }: EventCardProps) {
           {formatDate(event.date)} · {event.venue}
           {price ? ` · ${price}` : ""}
         </span>
-        <span className={isAccentAudience ? styles.audience : ""}>
-          {event.audience}
-        </span>
       </div>
 
       <h3

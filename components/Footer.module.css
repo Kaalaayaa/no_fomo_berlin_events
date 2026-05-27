@@ -59,6 +59,11 @@
   background-size: 100% 1px;
 }
 
+.navLink:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 2px;
+}
+
 .dot {
   opacity: 0.3;
   font-family: var(--font-mono), monospace;
@@ -97,4 +102,9 @@
 
 .legalLink:hover {
   background-size: 100% 1px;
+}
+
+.legalLink:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 2px;
 }
