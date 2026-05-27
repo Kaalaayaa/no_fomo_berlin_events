@@ -22,6 +22,9 @@ export default function Header() {
           <Link href="/submit" className={styles.submitBtn}>
             Submit event →
           </Link>
+          <Link href="/signin" className={styles.signinBtn}>
+            Sign in
+          </Link>
         </div>
 
       </div>
