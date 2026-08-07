@@ -8,7 +8,7 @@ A full-stack events platform for Berlin's queer and FLINTA* scene.
 
 ## What it is
 
-no/fomo is a human-edited index of queer and FLINTA* events in Berlin — clubs, concerts, readings, workshops, cinema, performances and more. Every listing is reviewed before it goes on.
+no/fomo is an index of queer and FLINTA* events in Berlin — clubs, concerts, readings, workshops, cinema, performances and more. Every listing is reviewed before it goes on.
 
 <img width="1680" height="909" alt="Screenshot 2026-05-27 at 18 15 55" src="https://github.com/user-attachments/assets/086f9cce-6c41-4303-acb9-2871fb9f1a06" />
 <img width="1203" height="906" alt="Screenshot 2026-05-27 at 18 16 39" src="https://github.com/user-attachments/assets/f5e509bb-cb27-4884-a8b1-1d34cc8e56aa" />
