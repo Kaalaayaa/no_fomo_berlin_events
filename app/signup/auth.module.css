@@ -123,20 +123,6 @@
   cursor: not-allowed;
 }
 
-.terms {
-  font-family: var(--font-mono), monospace;
-  font-size: 10px;
-  letter-spacing: 0.02em;
-  color: var(--ink-soft);
-  text-align: center;
-  line-height: 1.6;
-}
-
-.termsLink {
-  color: var(--ink-soft);
-  text-decoration: underline;
-}
-
 .divider {
   margin-top: 2.5rem;
   padding-top: 1.5rem;
@@ -193,55 +179,4 @@
   font-size: 20px;
   margin-top: 0.75rem;
   color: var(--ink);
-}
-
-/* PERKS (signup) */
-.perks {
-  margin-top: 2.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--rule);
-}
-
-.perksLabel {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 0.25rem;
-}
-
-.perk {
-  display: flex;
-  gap: 0.7rem;
-  align-items: flex-start;
-  padding: 0.65rem 0;
-  border-top: 1px solid var(--rule);
-}
-
-.perkNum {
-  font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.06em;
-  color: var(--accent);
-  width: 18px;
-  flex-shrink: 0;
-  padding-top: 3px;
-}
-
-.perkTitle {
-  font-family: var(--font-syne), sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-}
-
-.perkBody {
-  font-family: var(--font-instrument), serif;
-  font-style: italic;
-  color: var(--ink-soft);
-  font-size: 14px;
-  display: block;
-  margin-top: 1px;
 }

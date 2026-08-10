@@ -97,6 +97,36 @@
   letter-spacing: 0;
 }
 
+.input:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -0.5rem;
+}
+
+.forgotLink {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.25s;
+  padding-bottom: 2px;
+}
+
+.forgotLink:hover {
+  background-size: 100% 1px;
+}
+
 .submitBtn {
   width: 100%;
   background: var(--ink);
@@ -174,7 +204,7 @@
   background-size: 100% 1px;
 }
 
-.success {
+.signInSuccess {
   text-align: center;
   margin-top: 2rem;
 }

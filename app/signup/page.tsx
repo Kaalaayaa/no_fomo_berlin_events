@@ -1,26 +1,52 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import Link from 'next/link'
-import styles from './auth.module.css'
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import styles from "./auth.module.css";
 
 export default function SignUpPage() {
-  const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const router = useRouter();
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const submitTimer = useRef<number | null>(null);
+  const redirectTimer = useRef<number | null>(null);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setLoading(true)
-    setTimeout(() => {
-      setSubmitted(true)
-      setLoading(false)
-    }, 800)
+  useEffect(() => {
+    return () => {
+      if (submitTimer.current !== null) {
+        window.clearTimeout(submitTimer.current);
+      }
+
+      if (redirectTimer.current !== null) {
+        window.clearTimeout(redirectTimer.current);
+      }
+    };
+  }, []);
+
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (loading) {
+      return;
+    }
+
+    setLoading(true);
+
+    submitTimer.current = window.setTimeout(() => {
+      setSubmitted(true);
+      setLoading(false);
+
+      redirectTimer.current = window.setTimeout(() => {
+        router.push("/");
+      }, 900);
+    }, 800);
   }
 
   return (
     <main className={styles.page}>
       <div className={styles.inner}>
         <div className={styles.label}>— Become a member</div>
+
         <h1 className={styles.title}>
           Create an account
         </h1>
@@ -28,7 +54,9 @@ export default function SignUpPage() {
         {!submitted ? (
           <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.field}>
-              <label htmlFor="name" className={styles.fieldLabel}>Name</label>
+              <label htmlFor="name" className={styles.fieldLabel}>
+                Name
+              </label>
               <input
                 id="name"
                 className={styles.input}
@@ -36,10 +64,14 @@ export default function SignUpPage() {
                 autoComplete="given-name"
                 placeholder="First name or alias"
                 required
+                disabled={loading}
               />
             </div>
+
             <div className={styles.field}>
-              <label htmlFor="email" className={styles.fieldLabel}>Email</label>
+              <label htmlFor="email" className={styles.fieldLabel}>
+                Email
+              </label>
               <input
                 id="email"
                 className={styles.input}
@@ -47,46 +79,47 @@ export default function SignUpPage() {
                 autoComplete="email"
                 placeholder="you@queer.berlin"
                 required
+                disabled={loading}
               />
             </div>
-            <button type="submit" className={styles.submitBtn} disabled={loading}>
-              {loading ? 'Sending...' : 'Send invite link →'}
+
+            <div className={styles.field}>
+              <label htmlFor="password" className={styles.fieldLabel}>
+                Password
+              </label>
+              <input
+                id="password"
+                className={styles.input}
+                type="password"
+                autoComplete="new-password"
+                placeholder="Choose a password"
+                required
+                disabled={loading}
+              />
+            </div>
+
+            <button
+              type="submit"
+              className={styles.submitBtn}
+              disabled={loading}
+            >
+              {loading ? "Creating account..." : "Create account →"}
             </button>
-            {/* <p className={styles.terms}>
-              By signing up you agree to our{' '}
-              <a href="#" className={styles.termsLink}>door policy</a>{' '}
-              and that you're 18+.
-            </p> */}
           </form>
         ) : (
-          <div className={styles.success}>
+          <div className={styles.signInSuccess}>
             <div className={styles.successLabel}>✓ Welcome.</div>
-            <p className={styles.successText}>Check your inbox for the invite link.</p>
+            <p className={styles.successText}>Sending you home...</p>
           </div>
         )}
 
-        {/* <div className={styles.perks}>
-          <div className={styles.perksLabel}>— What you get</div>
-          {[
-            { num: '01', title: 'Friday digest, 48h early.', body: 'Weekend listings before the public site.' },
-            { num: '02', title: 'Members-only listings.', body: "Small parties that don't want to be googled." },
-            { num: '03', title: 'RSVP & .ics export.', body: 'Save events, drop them in your calendar.' },
-          ].map(p => (
-            <div key={p.num} className={styles.perk}>
-              <span className={styles.perkNum}>{p.num}</span>
-              <div>
-                <span className={styles.perkTitle}>{p.title}</span>
-                <span className={styles.perkBody}>{p.body}</span>
-              </div>
-            </div>
-          ))}
-        </div> */}
-
         <div className={styles.divider}>
           <span className={styles.dividerText}>Already a member?</span>
-          <Link href="/signin" className={styles.dividerLink}>Sign in →</Link>
+          <Link href="/signin" className={styles.dividerLink}>
+            Sign in →
+          </Link>
         </div>
       </div>
     </main>
-  )
+  );
 }
