@@ -2,9 +2,20 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import UserMenu from './UserMenu'
+import { logout } from '@/app/actions/auth'
 import styles from './Header.module.css'
 
-export default function Header() {
+interface HeaderUser {
+  id: string
+  name: string
+}
+
+interface HeaderProps {
+  user: HeaderUser | null
+}
+
+export default function Header({ user }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
@@ -29,9 +40,13 @@ export default function Header() {
           <Link href="/submit" className={styles.submitBtn}>
             Submit event →
           </Link>
-          <Link href="/signin" className={styles.signinBtn}>
-            Sign in
-          </Link>
+          {user ? (
+            <UserMenu name={user.name} />
+          ) : (
+            <Link href="/signin" className={styles.signinBtn}>
+              Sign in
+            </Link>
+          )}
         </div>
 
         <button
@@ -59,9 +74,25 @@ export default function Header() {
             <Link href="/submit" className={styles.submitBtn} onClick={() => setMenuOpen(false)}>
               Submit event →
             </Link>
-            <Link href="/signin" className={styles.signinBtn} onClick={() => setMenuOpen(false)}>
-              Sign in
-            </Link>
+            {user ? (
+              <>
+                <Link href="/account" className={styles.submitBtn} onClick={() => setMenuOpen(false)}>
+                  Account
+                </Link>
+                <Link href="/my-events" className={styles.submitBtn} onClick={() => setMenuOpen(false)}>
+                  My Events
+                </Link>
+                <form action={logout}>
+                  <button type="submit" className={styles.signinBtn}>
+                    Sign out
+                  </button>
+                </form>
+              </>
+            ) : (
+              <Link href="/signin" className={styles.signinBtn} onClick={() => setMenuOpen(false)}>
+                Sign in
+              </Link>
+            )}
           </div>
         </div>
       )}

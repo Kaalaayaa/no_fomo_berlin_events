@@ -7,7 +7,7 @@ datasource db {
 }
 
 model Event {
-  id           String   @id @default(cuid())
+  id           String    @id @default(cuid())
   title        String
   tagline      String
   description  String
@@ -25,7 +25,31 @@ model Event {
   pricingModel String?
   capacity     Int?
   ticketUrl    String?
-  isSafe       Boolean  @default(true)
-  createdAt    DateTime @default(now())
-  status       String   @default("pending")
+  isSafe       Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  status       String    @default("pending")
+  userId       String?
+  user         User?        @relation(fields: [userId], references: [id])
+  savedBy      SavedEvent[]
+}
+
+model User {
+  id          String       @id @default(cuid())
+  name        String
+  email       String       @unique
+  password    String
+  createdAt   DateTime     @default(now())
+  events      Event[]
+  savedEvents SavedEvent[]
+}
+
+model SavedEvent {
+  id        String   @id @default(cuid())
+  userId    String
+  eventId   String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, eventId])
 }

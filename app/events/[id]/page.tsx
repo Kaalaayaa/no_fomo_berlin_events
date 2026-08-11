@@ -2,7 +2,9 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { prisma } from "@/lib/prisma";
+import { verifySession } from "@/lib/dal";
 import EventCard from "@/components/EventCard";
+import SaveButton from "@/components/SaveButton";
 import styles from "./page.module.css";
 
 interface Props {
@@ -55,6 +57,19 @@ export default async function EventPage({ params }: Props) {
     orderBy: { date: "asc" },
   });
 
+  const session = await verifySession();
+  let savedIds = new Set<string>();
+  if (session) {
+    const saved = await prisma.savedEvent.findMany({
+      where: {
+        userId: session.userId,
+        eventId: { in: [event.id, ...related.map((e) => e.id)] },
+      },
+      select: { eventId: true },
+    });
+    savedIds = new Set(saved.map((s) => s.eventId));
+  }
+
   const isAccent = event.audience === "FLINTA*" || event.audience === "Queer";
 
   return (
@@ -103,6 +118,9 @@ export default async function EventPage({ params }: Props) {
                 <span className={isAccent ? styles.chipAccent : styles.chip}>
                   {event.audience}
                 </span>
+                {session && (
+                  <SaveButton eventId={event.id} initialSaved={savedIds.has(event.id)} />
+                )}
               </div>
               <h1 className={styles.title}>{event.title}</h1>
               <p className={styles.tagline}>{event.tagline}</p>
@@ -281,7 +299,12 @@ export default async function EventPage({ params }: Props) {
             </div>
             <div className={styles.relatedGrid}>
               {related.map((e) => (
-                <EventCard key={e.id} event={e} size="large" />
+                <EventCard
+                  key={e.id}
+                  event={e}
+                  size="large"
+                  savedByMe={session ? savedIds.has(e.id) : undefined}
+                />
               ))}
             </div>
           </div>

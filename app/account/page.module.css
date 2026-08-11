@@ -1,0 +1,228 @@
+.page {
+  padding: 3.5rem 2rem 6rem;
+}
+
+.inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-syne), sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.label {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.35rem;
+}
+
+.title {
+  font-family: var(--font-syne), sans-serif;
+  font-weight: 700;
+  font-size: clamp(32px, 5vw, 42px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.title em {
+  font-family: var(--font-instrument), serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+
+.content {
+  max-width: 480px;
+}
+
+/* ── Profile form ── */
+.profileForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.fieldLabel {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--rule-strong);
+  padding: 0.85rem 0 0.7rem;
+  font-family: var(--font-syne), sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.input:focus {
+  border-color: var(--accent);
+}
+
+.input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.fieldError,
+.formError {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: #b3261e;
+  margin-top: 0.4rem;
+}
+
+.profileActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.4rem;
+}
+
+.saveBtn {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11.5px;
+  padding: 0.85rem 1.3rem;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 1px solid var(--ink);
+  transition: background 0.15s;
+}
+
+.saveBtn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.saveBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.savedLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ── Membership ── */
+.membership {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.row:first-of-type {
+  border-top: none;
+}
+
+.rowLabel {
+  font-family: var(--font-instrument), serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.rowLink {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.signOutBtn {
+  width: 100%;
+  margin-top: 2.5rem;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11.5px;
+  padding: 0.85rem 1.3rem;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 1px solid var(--rule-strong);
+  transition: border-color 0.15s;
+}
+
+.signOutBtn:hover {
+  border-color: var(--ink);
+}
+
+.deleteBtn {
+  width: 100%;
+  margin-top: 0.75rem;
+  background: transparent;
+  color: #b3261e;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11.5px;
+  padding: 0.85rem 1.3rem;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.deleteBtn:hover {
+  border-color: #b3261e;
+  background: color-mix(in srgb, #b3261e 8%, transparent);
+}

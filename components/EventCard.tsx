@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import SaveButton from "./SaveButton";
 import styles from "./EventCard.module.css";
 
 interface Event {
@@ -19,6 +20,8 @@ interface Event {
 interface EventCardProps {
   event: Event;
   size?: "default" | "large";
+  /** Pass a boolean to show the save/bookmark button; omit to hide it (e.g. logged-out viewers). */
+  savedByMe?: boolean;
 }
 
 function formatDate(dateInput: string | Date) {
@@ -44,7 +47,7 @@ function formatPrice(
   return "";
 }
 
-export default function EventCard({ event, size = "default" }: EventCardProps) {
+export default function EventCard({ event, size = "default", savedByMe }: EventCardProps) {
   const isAccentAudience =
     event.audience === "FLINTA*" || event.audience === "Queer";
   const price = formatPrice(event.priceMin, event.priceMax, event.pricingModel);
@@ -67,6 +70,9 @@ export default function EventCard({ event, size = "default" }: EventCardProps) {
               background: "var(--paper-soft)",
             }}
           />
+        )}
+        {savedByMe !== undefined && (
+          <SaveButton eventId={event.id} initialSaved={savedByMe} onCard />
         )}
       </div>
 

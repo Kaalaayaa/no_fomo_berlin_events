@@ -1,0 +1,57 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--rule-strong);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.15s, background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.btn svg {
+  width: 14px;
+  height: 16px;
+  fill: transparent;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn.saved {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn.saved svg {
+  fill: var(--accent);
+  stroke: var(--accent);
+}
+
+.btn.saved:hover {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+.btn.saved:hover svg {
+  fill: var(--paper);
+  stroke: var(--paper);
+}
+
+.onCard {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 4;
+  backdrop-filter: blur(6px);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+}

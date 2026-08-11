@@ -9,6 +9,7 @@ import "./globals.css";
 import Ticker from "@/components/Ticker";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { getCurrentUser } from "@/lib/dal";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -40,11 +41,13 @@ export const metadata: Metadata = {
   description: "Queer and FLINTA* events in Berlin",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const user = await getCurrentUser();
+
   return (
     <html
       lang="en"
@@ -52,7 +55,7 @@ export default function RootLayout({
     >
       <body>
         <Ticker />
-        <Header />
+        <Header user={user} />
         {children}
         <Footer />
       </body>

@@ -1,0 +1,70 @@
+.wrap {
+  position: relative;
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--rule-strong);
+  padding: 0.42rem 0.8rem;
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.trigger:hover,
+.trigger.open {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 60;
+  width: 200px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--rule-strong);
+  border-radius: 14px;
+  padding: 6px;
+  box-shadow: 0 24px 50px -16px rgba(0, 0, 0, 0.28);
+}
+
+.menuRow {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--font-inter, "Inter"), sans-serif;
+  font-size: 13px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.menuRow:hover {
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
+}
+
+.menuRow.danger {
+  color: var(--ink-soft);
+  border-top: 1px solid var(--rule);
+  margin-top: 4px;
+  padding-top: 12px;
+}
+
+.menuRow.danger:hover {
+  color: var(--accent);
+}
