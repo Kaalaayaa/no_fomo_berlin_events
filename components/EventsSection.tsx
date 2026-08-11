@@ -16,6 +16,7 @@ interface Event {
   priceMin: number | null
   priceMax: number | null
   pricingModel: string | null
+  savedByMe?: boolean
 }
 
 interface Filters {
@@ -118,7 +119,7 @@ export default function EventsSection({ filters }: EventsSectionProps) {
             ) : (
               railCards.map(event => (
                 <div key={event.id} className={styles.railCard}>
-                  <EventCard event={event} />
+                  <EventCard event={event} savedByMe={event.savedByMe} />
                 </div>
               ))
             )}
@@ -143,7 +144,7 @@ export default function EventsSection({ filters }: EventsSectionProps) {
           ) : (
             <div className={styles.grid}>
               {events.slice(0, visibleCount).map(event => (
-                <EventCard key={event.id} event={event} size="large" />
+                <EventCard key={event.id} event={event} size="large" savedByMe={event.savedByMe} />
               ))}
             </div>
           )}

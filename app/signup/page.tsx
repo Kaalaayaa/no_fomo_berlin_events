@@ -1,46 +1,26 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useActionState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { signup } from "@/app/actions/auth";
 import styles from "./auth.module.css";
 
 export default function SignUpPage() {
   const router = useRouter();
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const submitTimer = useRef<number | null>(null);
-  const redirectTimer = useRef<number | null>(null);
+  const [state, action, pending] = useActionState(signup, undefined);
 
   useEffect(() => {
-    return () => {
-      if (submitTimer.current !== null) {
-        window.clearTimeout(submitTimer.current);
-      }
-
-      if (redirectTimer.current !== null) {
-        window.clearTimeout(redirectTimer.current);
-      }
-    };
-  }, []);
-
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (loading) {
+    if (!state?.success) {
       return;
     }
 
-    setLoading(true);
+    const redirectTimer = window.setTimeout(() => {
+      router.push("/");
+    }, 1200);
 
-    submitTimer.current = window.setTimeout(() => {
-      setSubmitted(true);
-      setLoading(false);
-
-      redirectTimer.current = window.setTimeout(() => {
-        router.push("/");
-      }, 900);
-    }, 800);
-  }
+    return () => window.clearTimeout(redirectTimer);
+  }, [state?.success, router]);
 
   return (
     <main className={styles.page}>
@@ -51,66 +31,82 @@ export default function SignUpPage() {
           Create an account
         </h1>
 
-        {!submitted ? (
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <div className={styles.field}>
-              <label htmlFor="name" className={styles.fieldLabel}>
-                Name
-              </label>
-              <input
-                id="name"
-                className={styles.input}
-                type="text"
-                autoComplete="given-name"
-                placeholder="First name or alias"
-                required
-                disabled={loading}
-              />
-            </div>
-
-            <div className={styles.field}>
-              <label htmlFor="email" className={styles.fieldLabel}>
-                Email
-              </label>
-              <input
-                id="email"
-                className={styles.input}
-                type="email"
-                autoComplete="email"
-                placeholder="you@queer.berlin"
-                required
-                disabled={loading}
-              />
-            </div>
-
-            <div className={styles.field}>
-              <label htmlFor="password" className={styles.fieldLabel}>
-                Password
-              </label>
-              <input
-                id="password"
-                className={styles.input}
-                type="password"
-                autoComplete="new-password"
-                placeholder="Choose a password"
-                required
-                disabled={loading}
-              />
-            </div>
-
-            <button
-              type="submit"
-              className={styles.submitBtn}
-              disabled={loading}
-            >
-              {loading ? "Creating account..." : "Create account →"}
-            </button>
-          </form>
-        ) : (
-          <div className={styles.signInSuccess}>
+        {state?.success ? (
+          <div className={styles.success}>
             <div className={styles.successLabel}>✓ Welcome.</div>
             <p className={styles.successText}>Sending you home...</p>
           </div>
+        ) : (
+        <form className={styles.form} action={action}>
+          <div className={styles.field}>
+            <label htmlFor="name" className={styles.fieldLabel}>
+              Name
+            </label>
+            <input
+              id="name"
+              name="name"
+              className={styles.input}
+              type="text"
+              autoComplete="given-name"
+              placeholder="First name or alias"
+              required
+              disabled={pending}
+              defaultValue={state?.values?.name ?? ""}
+            />
+            {state?.errors?.name && (
+              <p className={styles.fieldError}>{state.errors.name[0]}</p>
+            )}
+          </div>
+
+          <div className={styles.field}>
+            <label htmlFor="email" className={styles.fieldLabel}>
+              Email
+            </label>
+            <input
+              id="email"
+              name="email"
+              className={styles.input}
+              type="email"
+              autoComplete="email"
+              placeholder="you@queer.berlin"
+              required
+              disabled={pending}
+              defaultValue={state?.values?.email ?? ""}
+            />
+            {state?.errors?.email && (
+              <p className={styles.fieldError}>{state.errors.email[0]}</p>
+            )}
+          </div>
+
+          <div className={styles.field}>
+            <label htmlFor="password" className={styles.fieldLabel}>
+              Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              className={styles.input}
+              type="password"
+              autoComplete="new-password"
+              placeholder="Choose a password"
+              required
+              disabled={pending}
+            />
+            {state?.errors?.password && (
+              <ul className={styles.fieldError}>
+                {state.errors.password.map((error) => (
+                  <li key={error}>{error}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          {state?.message && <p className={styles.formError}>{state.message}</p>}
+
+          <button type="submit" className={styles.submitBtn} disabled={pending}>
+            {pending ? "Creating account..." : "Create account →"}
+          </button>
+        </form>
         )}
 
         <div className={styles.divider}>

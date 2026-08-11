@@ -204,6 +204,22 @@
   background-size: 100% 1px;
 }
 
+.formError {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: #b3261e;
+  margin-top: -0.75rem;
+}
+
+.fieldError {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: #b3261e;
+  margin-top: 0.4rem;
+}
+
 .signInSuccess {
   text-align: center;
   margin-top: 2rem;

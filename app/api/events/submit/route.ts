@@ -1,12 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { verifySession } from '@/lib/dal'
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
+    const session = await verifySession()
 
     const event = await prisma.event.create({
       data: {
+        userId: session?.userId ?? null,
         title: body.title,
         tagline: body.tagline,
         description: body.description,

@@ -1,46 +1,23 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { Suspense, useActionState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { login } from "@/app/actions/auth";
 import styles from "./auth.module.css";
 
 export default function SignInPage() {
-  const router = useRouter();
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const submitTimer = useRef<number | null>(null);
-  const redirectTimer = useRef<number | null>(null);
+  return (
+    <Suspense>
+      <SignInForm />
+    </Suspense>
+  );
+}
 
-  useEffect(() => {
-    return () => {
-      if (submitTimer.current !== null) {
-        window.clearTimeout(submitTimer.current);
-      }
-
-      if (redirectTimer.current !== null) {
-        window.clearTimeout(redirectTimer.current);
-      }
-    };
-  }, []);
-
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (loading) {
-      return;
-    }
-
-    setLoading(true);
-
-    submitTimer.current = window.setTimeout(() => {
-      setSubmitted(true);
-      setLoading(false);
-
-      redirectTimer.current = window.setTimeout(() => {
-        router.push("/");
-      }, 1200);
-    }, 800);
-  }
+function SignInForm() {
+  const [state, action, pending] = useActionState(login, undefined);
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirectTo") ?? "/";
 
   return (
     <main className={styles.page}>
@@ -53,61 +30,62 @@ export default function SignInPage() {
 
         <p className={styles.subtitle}>Sign in with your email and password.</p>
 
-        {!submitted ? (
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <div className={styles.field}>
-              <label htmlFor="email" className={styles.fieldLabel}>
-                Email
-              </label>
-              <input
-                id="email"
-                className={styles.input}
-                type="email"
-                autoComplete="email"
-                placeholder="you@queer.berlin"
-                required
-                disabled={loading}
-              />
-            </div>
-
-            <div className={styles.field}>
-              <label htmlFor="password" className={styles.fieldLabel}>
-                Password
-              </label>
-              <input
-                id="password"
-                className={styles.input}
-                type="password"
-                autoComplete="current-password"
-                placeholder="Password"
-                required
-                disabled={loading}
-              />
-            </div>
-
-            <div className={styles.actions}>
-              <Link
-                href="mailto:hello@nofomo.berlin?subject=Password%20reset"
-                className={styles.forgotLink}
-              >
-                Forgot password?
-              </Link>
-            </div>
-
-            <button
-              type="submit"
-              className={styles.submitBtn}
-              disabled={loading}
-            >
-              {loading ? "Signing in..." : "Sign in →"}
-            </button>
-          </form>
-        ) : (
-          <div className={styles.signInSuccess}>
-            <div className={styles.successLabel}>✓ You&apos;re in.</div>
-            <p className={styles.successText}>Redirecting you home...</p>
+        <form className={styles.form} action={action}>
+          <input type="hidden" name="redirectTo" value={redirectTo} />
+          <div className={styles.field}>
+            <label htmlFor="email" className={styles.fieldLabel}>
+              Email
+            </label>
+            <input
+              id="email"
+              name="email"
+              className={styles.input}
+              type="email"
+              autoComplete="email"
+              placeholder="you@queer.berlin"
+              required
+              disabled={pending}
+              defaultValue={state?.values?.email ?? ""}
+            />
+            {state?.errors?.email && (
+              <p className={styles.fieldError}>{state.errors.email[0]}</p>
+            )}
           </div>
-        )}
+
+          <div className={styles.field}>
+            <label htmlFor="password" className={styles.fieldLabel}>
+              Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              className={styles.input}
+              type="password"
+              autoComplete="current-password"
+              placeholder="Password"
+              required
+              disabled={pending}
+            />
+            {state?.errors?.password && (
+              <p className={styles.fieldError}>{state.errors.password[0]}</p>
+            )}
+          </div>
+
+          {state?.message && <p className={styles.formError}>{state.message}</p>}
+
+          <div className={styles.actions}>
+            <Link
+              href="mailto:hello@nofomo.berlin?subject=Password%20reset"
+              className={styles.forgotLink}
+            >
+              Forgot password?
+            </Link>
+          </div>
+
+          <button type="submit" className={styles.submitBtn} disabled={pending}>
+            {pending ? "Signing in..." : "Sign in →"}
+          </button>
+        </form>
 
         <div className={styles.divider}>
           <span className={styles.dividerText}>No account yet?</span>
