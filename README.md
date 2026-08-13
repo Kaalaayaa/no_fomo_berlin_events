@@ -4,7 +4,7 @@ A full-stack events platform for Berlin's queer and FLINTA* scene.
 
 **Live:** [nofomo-pi.vercel.app](https://nofomo-pi.vercel.app)
 
-[![CI](https://github.com/Kaalaayaa/no-fomo/actions/workflows/ci.yml/badge.svg)](https://github.com/Kaalaayaa/no-fomo/actions/workflows/ci.yml)
+[![CI](https://github.com/Kaalaayaa/no_fomo_berlin_events/actions/workflows/ci.yml/badge.svg)](https://github.com/Kaalaayaa/no_fomo_berlin_events/actions/workflows/ci.yml)
 
 ---
 
@@ -57,8 +57,8 @@ no/fomo is an index of queer and FLINTA* events in Berlin — clubs, concerts, r
 ## Running locally
 
 ```bash
-git clone https://github.com/Kaalaayaa/no-fomo.git
-cd no-fomo
+git clone https://github.com/Kaalaayaa/no_fomo_berlin_events.git
+cd no_fomo_berlin_events
 npm install
 ```
 
