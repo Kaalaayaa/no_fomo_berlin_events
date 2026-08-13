@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest'
+import { SignJWT } from 'jose'
 import { encrypt, decrypt } from './session'
 
 describe('session encrypt/decrypt', () => {
@@ -18,6 +19,24 @@ describe('session encrypt/decrypt', () => {
 
   it('returns undefined when no token is passed', async () => {
     const payload = await decrypt(undefined)
+    expect(payload).toBeUndefined()
+  })
+
+  it('rejects a token that has already expired', async () => {
+    // Built by hand with the same secret + library as lib/session.ts,
+    // since encrypt() always signs a 7-day token — there's no way to ask
+    // it for an already-expired one.
+    const encodedKey = new TextEncoder().encode(process.env.SESSION_SECRET)
+    const tenSecondsAgo = Math.floor(Date.now() / 1000) - 10
+
+    const expiredToken = await new SignJWT({ userId: 'user_123' })
+      .setProtectedHeader({ alg: 'HS256' })
+      .setIssuedAt()
+      .setExpirationTime(tenSecondsAgo)
+      .sign(encodedKey)
+
+    const payload = await decrypt(expiredToken)
+
     expect(payload).toBeUndefined()
   })
 })
