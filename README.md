@@ -4,7 +4,7 @@ A full-stack events platform for Berlin's queer and FLINTA* scene.
 
 **Live:** [nofomo-pi.vercel.app](https://nofomo-pi.vercel.app)
 
-[![CI](https://github.com/Kaalaayaa/nofomo/actions/workflows/ci.yml/badge.svg)](https://github.com/Kaalaayaa/nofomo/actions/workflows/ci.yml)
+[![CI](https://github.com/Kaalaayaa/no-fomo/actions/workflows/ci.yml/badge.svg)](https://github.com/Kaalaayaa/no-fomo/actions/workflows/ci.yml)
 
 ---
 
