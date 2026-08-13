@@ -28,12 +28,12 @@ export default function AboutPage() {
             <p className={styles.noteText}>
               I started this in 2024 because I kept missing the events I cared
               about. Not the big ones — those find you. The small ones: a
-              reading in someone's kitchen, a Wednesday milonga, a FLINTA* skate
+              reading in someone&apos;s kitchen, a Wednesday milonga, a FLINTA* skate
               session at Tempelhof that nobody posts about.
             </p>
             <p className={styles.noteTextSoft}>
               So I keep a list. Every Friday I go through what people have sent
-              me, what I've seen on posters, what friends mention at the bar. I
+              me, what I&apos;ve seen on posters, what friends mention at the bar. I
               check that the event is real and conform. Then it
               goes on the site.
             </p>

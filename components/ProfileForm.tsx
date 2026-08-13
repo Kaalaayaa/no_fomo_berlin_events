@@ -11,16 +11,30 @@ interface ProfileFormProps {
 
 export default function ProfileForm({ name, email }: ProfileFormProps) {
   const [state, action, pending] = useActionState(updateProfile, undefined);
+  const [prevState, setPrevState] = useState(state);
   const [showSaved, setShowSaved] = useState(false);
 
+  // Show the "Saved" flash the moment a new successful result comes in.
+  // Done during render (comparing against the last-seen state) rather than
+  // in an effect — the React-recommended pattern for "update state when a
+  // prop/value changes," which avoids an extra render pass.
+  if (state !== prevState) {
+    setPrevState(state);
+    if (state?.success) {
+      setShowSaved(true);
+    }
+  }
+
+  // This effect only talks to a real external system (the browser's timer)
+  // and never calls setState synchronously in its body — only later, inside
+  // the timeout callback — so it's a legitimate use of an effect.
   useEffect(() => {
-    if (!state?.success) {
+    if (!showSaved) {
       return;
     }
-    setShowSaved(true);
     const timer = window.setTimeout(() => setShowSaved(false), 1800);
     return () => window.clearTimeout(timer);
-  }, [state]);
+  }, [showSaved]);
 
   return (
     <form className={styles.profileForm} action={action}>
