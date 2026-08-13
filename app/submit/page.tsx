@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import styles from './page.module.css'
 
 const CATEGORIES = ['Club', 'Concert', 'Performance', 'Reading', 'Workshop', 'Cinema', 'Cruise', 'Kitchen', 'Talk']
@@ -70,11 +71,11 @@ export default function SubmitPage() {
       <main className={styles.successPage}>
         <div className={styles.successInner}>
           <div className={styles.sectionLabel}>— Submitted</div>
-          <h1 className={styles.successTitle}>Got it. We'll review within 48 hours.</h1>
+          <h1 className={styles.successTitle}>Got it. We&apos;ll review within 48 hours.</h1>
           <p className={styles.successText}>
-            A human reads every submission. No automated rejections. If we have questions we'll reach out by email.
+            A human reads every submission. No automated rejections. If we have questions we&apos;ll reach out by email.
           </p>
-          <a href="/" className={styles.backBtn}>← Back to events</a>
+          <Link href="/" className={styles.backBtn}>← Back to events</Link>
         </div>
       </main>
     )
@@ -281,7 +282,7 @@ export default function SubmitPage() {
               <div className={styles.sectionHeader}>
                 <span className={styles.sectionNum}>05</span>
                 <div>
-                  <div className={styles.sectionLabel}>— Who's submitting</div>
+                  <div className={styles.sectionLabel}>— Who&apos;s submitting</div>
                   <h2 className={styles.sectionTitle}>So we can reach you.</h2>
                 </div>
               </div>
@@ -330,7 +331,7 @@ export default function SubmitPage() {
               <div className={styles.sidebarBox} style={{ background: 'var(--paper-soft)' }}>
                 <div className={styles.sectionLabel}>— Not sure?</div>
                 <p className={styles.sidebarText}>
-                  If you're not sure whether your event fits, send us a message before submitting.
+                  If you&apos;re not sure whether your event fits, send us a message before submitting.
                 </p>
                 <a href="mailto:hello@nofomo.berlin" className={styles.sidebarLink}>hello@nofomo.berlin</a>
               </div>

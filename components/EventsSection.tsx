@@ -72,9 +72,18 @@ export default function EventsSection({ filters }: EventsSectionProps) {
   const [loading, setLoading] = useState(true)
   const [visibleCount, setVisibleCount] = useState(12)
 
-  useEffect(() => {
+  // Reset pagination and flip into a loading state the moment filters
+  // change, during render rather than in the effect below — React's
+  // set-state-in-effect rule wants state resets moved out of the effect
+  // body. The effect itself is left with only the actual async fetch.
+  const [prevFilters, setPrevFilters] = useState(filters)
+  if (filters !== prevFilters) {
+    setPrevFilters(filters)
     setVisibleCount(12)
     setLoading(true)
+  }
+
+  useEffect(() => {
     const params = new URLSearchParams()
     if (filters.category) params.set('category', filters.category)
     if (filters.audience) params.set('audience', filters.audience)

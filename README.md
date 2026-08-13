@@ -4,6 +4,8 @@ A full-stack events platform for Berlin's queer and FLINTA* scene.
 
 **Live:** [nofomo-pi.vercel.app](https://nofomo-pi.vercel.app)
 
+[![CI](https://github.com/Kaalaayaa/no_fomo_berlin_events/actions/workflows/ci.yml/badge.svg)](https://github.com/Kaalaayaa/no_fomo_berlin_events/actions/workflows/ci.yml)
+
 ---
 
 ## What it is
@@ -19,14 +21,18 @@ no/fomo is an index of queer and FLINTA* events in Berlin — clubs, concerts, r
 ## Tech stack
 
 **Frontend**
-- Next.js 14
+- Next.js 16
 - TypeScript
 - CSS Modules
 
 **Backend**
-- Next.js API routes (REST)
+- Next.js API routes (REST) + Server Actions
+- Custom auth — bcrypt password hashing, signed JWT sessions (`jose`), httpOnly cookies
 - Prisma ORM
 - PostgreSQL (hosted on Supabase)
+
+**Testing**
+- Vitest — unit tests for auth validation, session tokens, route protection, and login security
 
 **Deployment**
 - Vercel (frontend)
@@ -41,7 +47,8 @@ no/fomo is an index of queer and FLINTA* events in Berlin — clubs, concerts, r
 - Event detail pages with lineup, venue, pricing and related events
 - Submit an event form — saves to database as pending, reviewed before publishing
 - About page
-- Sign in / Sign up pages
+- Accounts — sign up / sign in / sign out, edit profile, delete account
+- Save events to your account (bookmark), see them on a "My Events" page alongside your own submissions
 - Fully responsive
 - Accessibility — semantic HTML, ARIA labels, keyboard navigation
 
@@ -50,14 +57,15 @@ no/fomo is an index of queer and FLINTA* events in Berlin — clubs, concerts, r
 ## Running locally
 
 ```bash
-git clone https://github.com/Kaalaayaa/no-fomo.git
-cd no-fomo
+git clone https://github.com/Kaalaayaa/no_fomo_berlin_events.git
+cd no_fomo_berlin_events
 npm install
 ```
 
 Create a `.env` file:
 ```
 DATABASE_URL="your-postgresql-connection-string"
+SESSION_SECRET="generate one with: openssl rand -base64 32"
 ```
 
 Run migrations and seed:
@@ -71,6 +79,11 @@ Start the dev server:
 npm run dev
 ```
 
+Run the test suite:
+```bash
+npm test
+```
+
 ---
 
 ## Project structure
@@ -81,21 +94,30 @@ app/
   events/[id]/          — event detail page
   submit/               — submit an event
   about/                — about page
+  account/               — account settings (protected)
+  my-events/             — saved events + your submissions (protected)
   signin/ signup/       — auth pages
+  actions/               — Server Actions: auth.ts, account.ts, events.ts
   api/events/           — REST API (GET all, GET by id, POST submit)
 components/
   Ticker                — scrolling announcement bar
-  Header                — navigation
+  Header, UserMenu      — navigation, session-aware account menu
   Hero                  — homepage headline
   FilterBar             — category, audience and date filters
-  EventCard             — card component (rail + grid variants)
+  EventCard, SaveButton — card component + bookmark toggle
   EventsSection         — rail + grid with pagination
+  ProfileForm, DeleteAccountButton
   Footer
 lib/
   prisma.ts             — Prisma client singleton
+  session.ts            — JWT session encrypt/decrypt, cookie handling
+  dal.ts                — auth checks (verifySession, requireUser, getCurrentUser)
+  definitions.ts        — zod validation schemas
 prisma/
-  schema.prisma         — Event model
+  schema.prisma         — Event, User, SavedEvent models
   seed.ts               — 12 seeded Berlin events
+.github/workflows/
+  ci.yml                 — runs lint + tests on every push/PR
 ```
 
 ---
