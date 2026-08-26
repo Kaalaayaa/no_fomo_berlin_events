@@ -19,7 +19,7 @@ export default function Footer() {
         </nav>
 
         <div className={styles.legal}>
-          <div>© no/fomo Berlin · 2026 · Independent, ad-free, member-funded.</div>
+          <div>© no/fomo Berlin · 2026</div>
           <div className={styles.legalLinks}>
             <a href="#" className={styles.legalLink}>Imprint</a>
             <a href="#" className={styles.legalLink}>Datenschutz</a>

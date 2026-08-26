@@ -1,27 +1,26 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import Link from 'next/link'
-import UserMenu from './UserMenu'
-import { logout } from '@/app/actions/auth'
-import styles from './Header.module.css'
+import { useState } from "react";
+import Link from "next/link";
+import UserMenu from "./UserMenu";
+import { logout } from "@/app/actions/auth";
+import styles from "./Header.module.css";
 
 interface HeaderUser {
-  id: string
-  name: string
+  id: string;
+  name: string;
 }
 
 interface HeaderProps {
-  user: HeaderUser | null
+  user: HeaderUser | null;
 }
 
 export default function Header({ user }: HeaderProps) {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-
         <Link href="/" className={styles.wordmark} aria-label="no/fomo home">
           <span className={styles.logo}>
             no<i>/</i>fomo
@@ -30,10 +29,18 @@ export default function Header({ user }: HeaderProps) {
         </Link>
 
         <nav className={styles.nav} aria-label="Main navigation">
-          <Link href="/" className={styles.navLink}>Events</Link>
-          <Link href="/about" className={styles.navLink}>About</Link>
-          <Link href="/" className={styles.navLink}>Map</Link>
-          <Link href="/about" className={styles.navLink}>Calender</Link>
+          <Link href="/events" className={styles.navLink}>
+            Events
+          </Link>
+          <Link href="/about" className={styles.navLink}>
+            About
+          </Link>
+          <Link href="/map" className={styles.navLink}>
+            Map
+          </Link>
+          {/* <Link href="/about" className={styles.navLink}>
+            Calender
+          </Link> */}
         </nav>
 
         <div className={styles.actions}>
@@ -51,35 +58,76 @@ export default function Header({ user }: HeaderProps) {
 
         <button
           className={styles.hamburger}
-          onClick={() => setMenuOpen(prev => !prev)}
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          onClick={() => setMenuOpen((prev) => !prev)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
         >
-          <span className={`${styles.bar} ${menuOpen ? styles.barTopOpen : ''}`} />
-          <span className={`${styles.bar} ${menuOpen ? styles.barMidOpen : ''}`} />
-          <span className={`${styles.bar} ${menuOpen ? styles.barBotOpen : ''}`} />
+          <span
+            className={`${styles.bar} ${menuOpen ? styles.barTopOpen : ""}`}
+          />
+          <span
+            className={`${styles.bar} ${menuOpen ? styles.barMidOpen : ""}`}
+          />
+          <span
+            className={`${styles.bar} ${menuOpen ? styles.barBotOpen : ""}`}
+          />
         </button>
-
       </div>
 
       {menuOpen && (
         <div className={styles.mobileMenu}>
           <nav className={styles.mobileNav} aria-label="Mobile navigation">
-            <Link href="/" className={styles.mobileNavLink} onClick={() => setMenuOpen(false)}>Events</Link>
-            <Link href="/about" className={styles.mobileNavLink} onClick={() => setMenuOpen(false)}>About</Link>
-            <Link href="/" className={styles.mobileNavLink} onClick={() => setMenuOpen(false)}>Map</Link>
-            <Link href="/about" className={styles.mobileNavLink} onClick={() => setMenuOpen(false)}>Calender</Link>
+            <Link
+              href="/events"
+              className={styles.mobileNavLink}
+              onClick={() => setMenuOpen(false)}
+            >
+              Events
+            </Link>
+            <Link
+              href="/about"
+              className={styles.mobileNavLink}
+              onClick={() => setMenuOpen(false)}
+            >
+              About
+            </Link>
+            <Link
+              href="/map"
+              className={styles.mobileNavLink}
+              onClick={() => setMenuOpen(false)}
+            >
+              Map
+            </Link>
+            <Link
+              href="/about"
+              className={styles.mobileNavLink}
+              onClick={() => setMenuOpen(false)}
+            >
+              Calender
+            </Link>
           </nav>
           <div className={styles.mobileActions}>
-            <Link href="/submit" className={styles.submitBtn} onClick={() => setMenuOpen(false)}>
+            <Link
+              href="/submit"
+              className={styles.submitBtn}
+              onClick={() => setMenuOpen(false)}
+            >
               Submit event →
             </Link>
             {user ? (
               <>
-                <Link href="/account" className={styles.submitBtn} onClick={() => setMenuOpen(false)}>
+                <Link
+                  href="/account"
+                  className={styles.submitBtn}
+                  onClick={() => setMenuOpen(false)}
+                >
                   Account
                 </Link>
-                <Link href="/my-events" className={styles.submitBtn} onClick={() => setMenuOpen(false)}>
+                <Link
+                  href="/my-events"
+                  className={styles.submitBtn}
+                  onClick={() => setMenuOpen(false)}
+                >
                   My Events
                 </Link>
                 <form action={logout}>
@@ -89,7 +137,11 @@ export default function Header({ user }: HeaderProps) {
                 </form>
               </>
             ) : (
-              <Link href="/signin" className={styles.signinBtn} onClick={() => setMenuOpen(false)}>
+              <Link
+                href="/signin"
+                className={styles.signinBtn}
+                onClick={() => setMenuOpen(false)}
+              >
                 Sign in
               </Link>
             )}
@@ -97,5 +149,5 @@ export default function Header({ user }: HeaderProps) {
         </div>
       )}
     </header>
-  )
+  );
 }
