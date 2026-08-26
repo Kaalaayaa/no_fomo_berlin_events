@@ -7,16 +7,15 @@ export default function AboutPage() {
       {/* HERO */}
       <section className={styles.heroSection}>
         <div className={styles.heroInner}>
-          <div className={styles.label}>— About no/fomo</div>
+          {/*<div className={styles.label}>— About no/fomo</div>*/}
           <h1 className={styles.heroTitle}>
-            A small list.
+            About
             <br />
-            <em>Kept by hand.</em>
           </h1>
-          <p className={styles.heroSubtitle}>
+          {/* <p className={styles.heroSubtitle}>
             no/fomo is a small side project, hand-edited list of queer & FLINTA* events in
             Berlin.
-          </p>
+          </p> */}
         </div>
       </section>
 
@@ -26,16 +25,14 @@ export default function AboutPage() {
           
           <div className={styles.noteBody}>
             <p className={styles.noteText}>
-              I started this in 2024 because I kept missing the events I cared
-              about. Not the big ones — those find you. The small ones: a
-              reading in someone&apos;s kitchen, a Wednesday milonga, a FLINTA* skate
-              session at Tempelhof that nobody posts about.
+              no/fomo is a small side project, hand-edited list of queer & FLINTA* events in
+            Berlin.
+              I started it in 2026 because I don’t have Instagram, and I kept missing the things I actually wanted to go to, small exhibitions, gardening workshops, a theatre piece on someone’s terrace, a Tuesday queer basketball meetup, a FLINTA* skate session at Tempelhof. Things that don’t always make it onto the usual event listings websites.
             </p>
             <p className={styles.noteTextSoft}>
-              So I keep a list. Every Friday I go through what people have sent
-              me, what I&apos;ve seen on posters, what friends mention at the bar. I
-              check that the event is real and conform. Then it
-              goes on the site.
+              Every week, I go through events people send me, things I spot on posters, and things friends mention. I check that they fit the list, then add them to the site.
+
+If you’re organising something, you can submit it too. I’ll check it first, then add it if it feels right for no/fomo.
             </p>
             {/* <p className={styles.noteTextSoft}>
               That's the whole thing. It's not a venue, a label, or a startup.
@@ -131,11 +128,11 @@ export default function AboutPage() {
       <section className={styles.contactSection}>
         <div className={styles.contactInner}>
           <div className={styles.contactLeft}>
-            <div className={styles.label} style={{ marginBottom: "0.75rem" }}>
+            {/*<div className={styles.label} style={{ marginBottom: "0.75rem" }}>
               — Get in touch
-            </div>
+            </div>*/}
             <h2 className={styles.contactTitle}>
-              Just write to <em>me.</em>
+              Get in touch
             </h2>
             {/* <p className={styles.contactSubtitle}>
               One inbox, one person. I read everything within a few days, slower

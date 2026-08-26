@@ -88,14 +88,14 @@ export default function SubmitPage() {
         <div className={styles.heroInner}>
           <div className={styles.heroGrid}>
             <div>
-              <div className={styles.sectionLabel}>— Submit an event</div>
+              {/* <div className={styles.sectionLabel}>— Submit an event</div> */}
               <h1 className={styles.heroTitle}>
-                Throwing something? <em>Tell us.</em>
+                Submit an events
               </h1>
             </div>
             <div>
               <p className={styles.heroSubtitle}>
-                By the community, for the community. We review submissions within 48 hours.
+                We review submissions within 48 hours.
               </p>
             </div>
           </div>
@@ -310,7 +310,7 @@ export default function SubmitPage() {
               <button type="submit" className={styles.submitBtn} disabled={loading}>
                 {loading ? 'Submitting...' : 'Submit for review →'}
               </button>
-              <div className={styles.submitHint}>Reviewed by a human within 48 hours. No automated rejections.</div>
+              {/* <div className={styles.submitHint}>Reviewed by a human within 48 hours. No automated rejections.</div> */}
             </div>
 
           </form>
@@ -320,11 +320,11 @@ export default function SubmitPage() {
             <div className={styles.sidebarSticky}>
 
               <div className={styles.sidebarBox}>
-                <div className={styles.sectionLabel} style={{ color: 'var(--accent)' }}>— What we check</div>
+                <div className={styles.sectionLabel}>— What we check</div>
                 <ul className={styles.checkList}>
                   <li>· Queer-led or actively queer-centered.</li>
                   <li>· Not homophobic or transphobic.</li>
-                  <li>· Accessibility & community care structures.</li>
+                  {/* <li>· Accessibility & community care structures.</li> */}
                 </ul>
               </div>
 

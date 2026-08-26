@@ -25,7 +25,7 @@ function SignInForm() {
         <div className={styles.label}>— Sign in</div>
 
         <h1 className={styles.title}>
-          Welcome <em>back.</em>
+          Welcome back
         </h1>
 
         <p className={styles.subtitle}>Sign in with your email and password.</p>
